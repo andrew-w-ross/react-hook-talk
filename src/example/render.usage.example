@@ -1,0 +1,9 @@
+class UseSubscrition extends React.Component {
+  render() {
+    return (
+      <div>
+        <Subscription>{data => <h1>{data}</h1>}</Subscription>
+      </div>
+    );
+  }
+}

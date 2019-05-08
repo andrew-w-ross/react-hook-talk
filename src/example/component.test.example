@@ -1,0 +1,25 @@
+it("will increment", () => {
+  const incButton = container.querySelector("#inc");
+  const spanCount = container.querySelector("#count");
+
+  expect(spanCount.textContent).toBe("0");
+
+  act(() => {
+    incButton.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  expect(spanCount.textContent).toBe("1");
+});
+
+it("will decrement", () => {
+  const decButton = container.querySelector("#dec");
+  const spanCount = container.querySelector("#count");
+
+  expect(spanCount.textContent).toBe("0");
+
+  act(() => {
+    decButton.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  expect(spanCount.textContent).toBe("-1");
+});

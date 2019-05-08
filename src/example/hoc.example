@@ -1,0 +1,29 @@
+function withSubscription(WrappedComponent) {
+  return class extends React.Component {
+    constructor(props) {
+      super(props);
+      this.handleChange = this.handleChange.bind(this);
+      this.state = {
+        data: null
+      };
+    }
+
+    componentWillMount() {
+      DataSource.addChangeListener(this.handleChange);
+    }
+
+    componentWillUnmount() {
+      DataSource.removeChangeListener(this.handleChange);
+    }
+
+    handleChange(data) {
+      this.setState({
+        data: data
+      });
+    }
+
+    render() {
+      return <WrappedComponent data={this.state.data} {...this.props} />;
+    }
+  };
+}

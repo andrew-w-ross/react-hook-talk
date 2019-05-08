@@ -1,0 +1,18 @@
+import React from "react";
+
+const themeDefault = { color: "light" };
+export const ThemeContext = React.createContext(themeDefault);
+
+const ThemeProvider = ({ color, children }) => {
+  return (
+    <ThemeContext.Provider value={{ color }}>{children}</ThemeContext.Provider>
+  );
+};
+
+const Usage = () => {
+  return (
+    <ThemeContext.Consumer>
+      {theme => <h1 color={theme.color}>Text</h1>}
+    </ThemeContext.Consumer>
+  );
+};

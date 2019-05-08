@@ -1,0 +1,7 @@
+class UseSubscription {
+  render() {
+    return <h1>{this.props.data}</h1>;
+  }
+}
+
+export default withSubscription(UseSubscription);

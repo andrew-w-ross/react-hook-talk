@@ -1,0 +1,30 @@
+var SubscriptionMixin = {
+  getInitialState: function() {
+    return {
+      data: null
+    };
+  },
+
+  componentDidMount: function() {
+    DataSource.addChangeListener(this.handleChange);
+  },
+
+  componentWillUnmount: function() {
+    DataSource.removeChangeListener(this.handleChange);
+  },
+
+  handleChange: function(data) {
+    this.setState({
+      data: data
+    });
+  }
+};
+
+var Message = React.createClass({
+  mixins: [SubscriptionMixin],
+
+  render: function() {
+    var message = this.state.data;
+    return <h1>{message}</h1>;
+  }
+});

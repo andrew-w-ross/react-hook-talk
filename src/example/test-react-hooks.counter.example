@@ -1,0 +1,37 @@
+import { useTestProxy, cleanUp } from "test-react-hooks";
+import useCounter from "./useCounter";
+
+afterEach(cleanUp);
+
+const [prxCounter] = useTestProxy(useCounter);
+
+test("should take in inital value", () => {
+  const { count } = prxCounter(2);
+  expect(count).toBe(2);
+});
+
+test("should increment counter", () => {
+  {
+    const { count, inc } = prxCounter();
+    expect(count).toBe(0);
+    inc();
+  }
+
+  {
+    const { count } = prxCounter();
+    expect(count).toBe(1);
+  }
+});
+
+test("should decrement counter", () => {
+  {
+    const { count, dec } = prxCounter();
+    expect(count).toBe(0);
+    dec();
+  }
+
+  {
+    const { count } = prxCounter();
+    expect(count).toBe(-1);
+  }
+});

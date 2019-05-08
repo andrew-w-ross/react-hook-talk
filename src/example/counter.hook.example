@@ -1,0 +1,11 @@
+import React, { useState } from "react";
+
+export const Counter = (inital = 0) => {
+  const [count, setCount] = useState(inital);
+  return (
+    <div>
+      <h1>Count {count}</h1>
+      <button onClick={() => setCount(count + 1)}>+</button>
+    </div>
+  );
+};

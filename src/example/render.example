@@ -1,0 +1,27 @@
+class Subscription extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      data: null
+    };
+  }
+
+  componentDidMount() {
+    DataSource.addChangeListener(this.handleChange);
+  }
+
+  componentWillUnmount() {
+    DataSource.removeChangeListener(this.handleChange);
+  }
+
+  handleChange(data) {
+    this.setState({
+      data: data
+    });
+  }
+
+  render() {
+    return this.props.children(this.state.data);
+  }
+}

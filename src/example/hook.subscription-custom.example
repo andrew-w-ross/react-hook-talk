@@ -1,0 +1,17 @@
+import React, { useState, useEffect } from "react";
+
+function useMessage() {
+  const [message, setMessage] = useState("No Message");
+
+  useEffect(() => {
+    DataSource.addChangeListener(setMessage);
+    return () => DataSource.removeChangeListener(setMessage);
+  }, []);
+
+  return message;
+}
+
+export const Message = () => {
+  const message = useMessage();
+  return <h1>{message}</h1>;
+};

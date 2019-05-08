@@ -1,0 +1,10 @@
+import React from "react";
+import { ThemeContext } from "./Theme";
+
+const Usage = () => {
+  return (
+    <ThemeContext.Consumer>
+      {theme => <h1 color={theme.color}>Text</h1>}
+    </ThemeContext.Consumer>
+  );
+};

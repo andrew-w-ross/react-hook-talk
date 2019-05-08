@@ -18,10 +18,10 @@ import {
   Quote,
   Slide,
   Text,
-  Magic,
   Code,
   CodePane,
-  Appear
+  Appear,
+  Anim
 } from "spectacle";
 // Import theme
 
@@ -40,6 +40,7 @@ const code = {
   hookSubscription: require("./example/hook.subscription.example"),
   hookSubscriptionCustom: require("./example/hook.subscription-custom.example"),
   context: require("./example/context.example"),
+  renderContext: require("./example/context.render.example"),
   useContext: require("./example/useContext.example"),
   useCounter: require("./example/useCounter.example"),
   testSetup: require("./example/component.setup.example"),
@@ -58,7 +59,7 @@ export default class Presentation extends React.Component {
           </BlockQuote>
         </Slide>
         <Slide>
-          <Heading fit>A quick question</Heading>
+          <Heading fit>An unrelated question</Heading>
           <Appear>
             <Text>How do we share code between components?</Text>
           </Appear>
@@ -98,11 +99,11 @@ export default class Presentation extends React.Component {
             <Heading>Until 2016</Heading>
           </Appear>
           <Appear>
-            <Heading fit>Mixins didn't make it into the es spec</Heading>
+            <Heading fit>Mixins didn't make it into the es class spec</Heading>
           </Appear>
         </Slide>
         <Slide>
-          <Heading fit>Mixins considered harmful</Heading>
+          <Heading fit>Also mixins considered harmful</Heading>
           <List>
             <Appear>
               <ListItem>Clashes on class methods</ListItem>
@@ -124,13 +125,13 @@ export default class Presentation extends React.Component {
             </Appear>
             <Appear>
               <ListItem>
-                Indirection - where does the state value come from?
+                Indirection - where does the state value, or method come from?
               </ListItem>
             </Appear>
           </List>
         </Slide>
         <Slide>
-          <Heading size={3}>Sharing Attempt #2 Higher Order Components</Heading>
+          <Heading fit>Sharing Attempt #2 HOC</Heading>
         </Slide>
         <Slide>
           <CodePane textSize={16} lang="js" source={code.hoc} />
@@ -185,6 +186,15 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide>
           <Heading fit>Sharing Attempt #2.5 Render Props</Heading>
+          <Appear>
+            <BlockQuote>
+              <Quote>
+                I can do anything you're doing with your HOC using a regular
+                component with a render prop. Come fight me.
+              </Quote>
+              <Cite>@mjackson</Cite>
+            </BlockQuote>
+          </Appear>
         </Slide>
         <Slide>
           <CodePane textSize={18} lang="js" source={code.renderProp} />
@@ -237,35 +247,54 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading size={1}>useState</Heading>
           <List>
-            <ListItem>Same as state in a class component</ListItem>
-            <ListItem>
-              <Code textSize={30}>
-                const [state, setState] = useState(initialState);
-              </Code>
-            </ListItem>
-            <ListItem>state - is the current state</ListItem>
-            <ListItem>setState - updates the state</ListItem>
-            <ListItem>
-              initialState can be a value or function <Code>() => state</Code>
-            </ListItem>
+            <Appear>
+              <ListItem>Same as state in a class component</ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                <Code textSize={30}>
+                  const [state, setState] = useState(initialState);
+                </Code>
+              </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>state - is the current state</ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>setState - updates the state</ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                initialState can be a value or function <Code>() => state</Code>
+              </ListItem>
+            </Appear>
           </List>
         </Slide>
         <Slide>
-          <Heading size={1}>useEffect</Heading>
+          <Heading fit>useEffect</Heading>
           <List>
-            <ListItem>
-              kinda like componentWillMount and componentWillUnmount
-            </ListItem>
-            <ListItem>
-              <Code textSize={30}>useEffect(didUpdate,[deps]);</Code>
-            </ListItem>
-            <ListItem>
-              didUpdate - method to run on render may return a cleanup function
-            </ListItem>
-            <ListItem>
-              deps - optional array of arguments to watch, if not set will
-              always update on render
-            </ListItem>
+            <Appear>
+              <ListItem>
+                kinda like componentWillMount and componentWillUnmount
+              </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                <Code textSize={30}>useEffect(didUpdate,[deps]);</Code>
+              </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                didUpdate - method to run on render may return a cleanup
+                function
+              </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                deps - optional array of arguments to watch, if not set will
+                always update on render
+              </ListItem>
+            </Appear>
           </List>
         </Slide>
         <Slide>
@@ -284,34 +313,54 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading fit>Rules of hooks</Heading>
           <List>
-            <ListItem>Only call hooks at the top level</ListItem>
-            <ListItem>
-              Can only be called from react function components
-            </ListItem>
-            <ListItem>Or custom hooks</ListItem>
+            <Appear>
+              <ListItem>Only call hooks at the top level</ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                Can only be called from react function components
+              </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>Or in a custom hooks</ListItem>
+            </Appear>
           </List>
-          <Text>Use eslint-plugin-react-hooks to enforce these rules</Text>
+          <Appear>
+            <Text>Use eslint-plugin-react-hooks to enforce these rules</Text>
+          </Appear>
         </Slide>
         <Slide>
           <Heading fit>Hook Primitives - Basic</Heading>
-          <Appear>
-            <List fit>
+          <List fit>
+            <Appear>
               <ListItem>useState - similar to state on component</ListItem>
+            </Appear>
+            <Appear>
               <ListItem>useEffect - similar and mount and unmount</ListItem>
+            </Appear>
+            <Appear>
               <ListItem>useContext - lets you use react context value</ListItem>
+            </Appear>
+            <Appear>
               <ListItem>useRef - similar to React.createRef()</ListItem>
+            </Appear>
+            <Appear>
               <ListItem>
                 useDebugValue - adds debug labels for DevTools
               </ListItem>
-            </List>
-          </Appear>
+            </Appear>
+          </List>
           <Appear>
             <Text>Let's have a look at useContext</Text>
           </Appear>
         </Slide>
         <Slide>
-          <Heading fit>Current method</Heading>
+          <Heading fit>Setup Context</Heading>
           <CodePane textSize={18} lang="js" source={code.context} />
+        </Slide>
+        <Slide>
+          <Heading fit>Render prop</Heading>
+          <CodePane textSize={18} lang="js" source={code.renderContext} />
         </Slide>
         <Slide>
           <Heading fit>With useContext</Heading>
@@ -320,23 +369,35 @@ export default class Presentation extends React.Component {
         <Slide>
           <Heading fit>Hook Primitives - Advanced</Heading>
           <List fit>
-            <ListItem>
-              useLayoutEffect - same useEffect but after paint
-            </ListItem>
-            <ListItem>useMemo - returns a memoized value</ListItem>
-            <ListItem>useCallback - returns a memoized callback</ListItem>
-            <ListItem>
-              useimperativehandle - lets you customize a ref for forwarding
-            </ListItem>
+            <Appear>
+              <ListItem>
+                useLayoutEffect - same useEffect but after paint
+              </ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>useMemo - returns a memoized value</ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>useCallback - returns a memoized callback</ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                useImperativeHandle - lets you customize a ref for forwarding
+              </ListItem>
+            </Appear>
           </List>
         </Slide>
         <Slide>
           <Heading fit>How do you test hooks?</Heading>
           <List>
-            <ListItem>Remember the rules of hooks</ListItem>
-            <ListItem>
-              Have to be rendered inside of a functional component
-            </ListItem>
+            <Appear>
+              <ListItem>Remember the rules of hooks</ListItem>
+            </Appear>
+            <Appear>
+              <ListItem>
+                Have to be rendered inside of a functional component
+              </ListItem>
+            </Appear>
           </List>
         </Slide>
         <Slide>
@@ -360,7 +421,37 @@ export default class Presentation extends React.Component {
           </Appear>
         </Slide>
         <Slide>
-          <Heading>Demo time</Heading>
+          <Heading fit>So I wrote a library</Heading>
+          <Appear>
+            <Heading fit>
+              introducing <Code>test-react-hooks</Code>
+            </Heading>
+          </Appear>
+          <Appear>
+            <BlockQuote>
+              <Quote>The easiest way to test react hooks.</Quote>
+              <Appear>
+                <Quote>Fight me.</Quote>
+              </Appear>
+              <Appear>
+                <Cite>Me</Cite>
+              </Appear>
+            </BlockQuote>
+          </Appear>
+        </Slide>
+        <Slide>
+          <Heading fit>Self promotion Time</Heading>
+        </Slide>
+        <Slide>
+          <Appear>
+            <Heading>Applause</Heading>
+          </Appear>
+          <Appear>
+            <Heading>And perhaps a whistle</Heading>
+          </Appear>
+          <Appear>
+            <Heading>Too much?</Heading>
+          </Appear>
         </Slide>
         <Slide>
           <Heading>Q&A</Heading>
